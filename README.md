@@ -1,9 +1,12 @@
-# Standalone AI Agent
+# Standalone AI Agent (100% FREE!)
 
-An autonomous AI agent built with Next.js, TypeScript, and Claude AI. This agent can autonomously use tools to accomplish tasks, including calculations, web searches, task planning, and more.
+An autonomous AI agent built with Next.js, TypeScript, and Google's Gemini AI. This agent can autonomously use tools to accomplish tasks, including calculations, web searches, task planning, and more.
+
+**No payment or credit card required!** Uses Google's generous free Gemini API tier.
 
 ## Features
 
+- **100% FREE**: Powered by Google Gemini's free tier - no payment or credit card needed!
 - **Autonomous Tool Calling**: The agent can independently decide when and which tools to use
 - **Interactive Chat Interface**: Clean, modern UI for conversing with the agent
 - **Multiple Tools**:
@@ -11,34 +14,39 @@ An autonomous AI agent built with Next.js, TypeScript, and Claude AI. This agent
   - Web Search: Search for information (simulated, can be integrated with real APIs)
   - Task Planner: Break down complex goals into actionable steps
   - Current Time: Get current date and time
+  - Knowledge Base: Query information on various topics
 - **Conversation Memory**: Maintains context throughout the conversation
-- **Real-time Streaming**: See the agent thinking and responding in real-time
+- **Real-time Responses**: See the agent thinking and responding in real-time
 
 ## Architecture
 
 ### Components
 
 1. **Frontend** (`src/components/AgentChat.tsx`): React component providing the chat interface
-2. **API Route** (`src/app/api/agent/route.ts`): Backend handler for agent interactions
-3. **Agent Tools** (`src/lib/agent-tools.ts`): Tool definitions and execution logic
+2. **API Routes**:
+   - `src/app/api/gemini-agent/route.ts`: FREE Gemini-powered agent (default)
+   - `src/app/api/agent/route.ts`: Claude-powered agent (optional, requires payment)
+3. **Agent Tools**:
+   - `src/lib/gemini-agent-tools.ts`: Tool definitions for Gemini (FREE)
+   - `src/lib/agent-tools.ts`: Tool definitions for Claude (optional)
 
 ### How It Works
 
 1. User sends a message through the chat interface
-2. The message is sent to the `/api/agent` endpoint
-3. The agent (Claude AI) receives the message and decides if it needs to use any tools
+2. The message is sent to the `/api/gemini-agent` endpoint
+3. The agent (Google Gemini) receives the message and decides if it needs to use any tools
 4. If tools are needed, the agent calls them and processes the results
 5. The agent formulates a response incorporating tool results
 6. The response is sent back to the user
 
 The agent runs in a loop, allowing it to use multiple tools in sequence to accomplish complex tasks.
 
-## Setup
+## Setup (5 Minutes, 100% FREE!)
 
 ### Prerequisites
 
 - Node.js 18+ installed
-- An Anthropic API key (get one at https://console.anthropic.com/)
+- A FREE Google Gemini API key (no credit card needed!)
 
 ### Installation
 
@@ -47,14 +55,20 @@ The agent runs in a loop, allowing it to use multiple tools in sequence to accom
    npm install
    ```
 
-2. Create a `.env.local` file in the root directory:
+2. Get your FREE Gemini API key:
+   - Visit https://makersuite.google.com/app/apikey
+   - Sign in with your Google account
+   - Click "Create API Key"
+   - Copy your key (no credit card required!)
+
+3. Create a `.env.local` file in the root directory:
    ```bash
    cp .env.example .env.local
    ```
 
-3. Add your Anthropic API key to `.env.local`:
+4. Add your FREE Gemini API key to `.env.local`:
    ```
-   ANTHROPIC_API_KEY=your_actual_api_key_here
+   GEMINI_API_KEY=your_free_gemini_api_key_here
    ```
 
 ### Running the Agent
@@ -73,13 +87,16 @@ The agent runs in a loop, allowing it to use multiple tools in sequence to accom
 
 ## Example Interactions
 
-Try these prompts to see the agent's capabilities:
+Try these prompts to see the agent's FREE capabilities:
 
-- **Math**: "What is 25 multiplied by 48?"
+- **Math**: "What is 25 multiplied by 48?" or "Calculate sqrt(144)"
 - **Search**: "Search for the latest AI developments"
 - **Planning**: "Help me plan a project to learn web development"
 - **Time**: "What time is it right now?"
+- **Knowledge**: "Tell me about machine learning" or "What is blockchain?"
 - **Complex**: "I need to calculate 15% tip on $85.50, then plan my day around a 2pm meeting"
+
+All of these work completely FREE with no payment required!
 
 ## Extending the Agent
 
@@ -127,9 +144,17 @@ The web search tool is currently simulated. To integrate a real search API:
 
 - **Framework**: Next.js 16 (App Router)
 - **UI**: React 19, Tailwind CSS 4
-- **AI**: Anthropic Claude 3.5 Sonnet
+- **AI**: Google Gemini 1.5 Flash (FREE tier!)
 - **Language**: TypeScript
 - **Runtime**: Node.js
+
+### Why Gemini?
+
+- **100% Free**: Generous free tier with no credit card required
+- **Fast**: Gemini 1.5 Flash is optimized for speed
+- **Capable**: Full function calling and tool use support
+- **Generous Limits**: 15 requests per minute, 1 million tokens per day (free tier)
+- **No Payment**: Never asks for payment or credit card info
 
 ## Project Structure
 
@@ -138,15 +163,18 @@ Ai_Agent/
 ├── src/
 │   ├── app/
 │   │   ├── api/
+│   │   │   ├── gemini-agent/
+│   │   │   │   └── route.ts       # FREE Gemini agent endpoint (default)
 │   │   │   └── agent/
-│   │   │       └── route.ts       # Agent API endpoint
+│   │   │       └── route.ts       # Claude agent endpoint (optional, paid)
 │   │   ├── layout.tsx             # Root layout
 │   │   ├── page.tsx               # Home page
 │   │   └── globals.css            # Global styles
 │   ├── components/
 │   │   └── AgentChat.tsx          # Chat interface component
 │   └── lib/
-│       └── agent-tools.ts         # Tool definitions and execution
+│       ├── gemini-agent-tools.ts  # FREE Gemini tools (default)
+│       └── agent-tools.ts         # Claude tools (optional)
 ├── public/                        # Static assets
 ├── .env.example                   # Environment variable template
 ├── package.json                   # Dependencies
@@ -160,20 +188,30 @@ Ai_Agent/
 - Validate and sanitize all user inputs in production
 - Implement rate limiting for the API endpoint
 
-## Deployment
+## Deployment (Still FREE!)
 
-### Vercel (Recommended)
+### Vercel (Recommended - FREE)
 
 1. Push your code to GitHub
-2. Import the project in Vercel
-3. Add your `ANTHROPIC_API_KEY` environment variable in Vercel settings
-4. Deploy!
+2. Import the project in Vercel (FREE tier available)
+3. Add your `GEMINI_API_KEY` environment variable in Vercel settings
+4. Deploy! (Vercel + Gemini = 100% FREE hosting!)
 
-### Other Platforms
+### Other FREE Platforms
 
-The agent can be deployed to any platform that supports Next.js (Netlify, AWS Amplify, Railway, Render).
+The agent can be deployed to any platform that supports Next.js:
+- **Netlify** (FREE tier)
+- **Railway** (FREE tier)
+- **Render** (FREE tier)
+- **AWS Amplify** (FREE tier available)
 
-Make sure to set the `ANTHROPIC_API_KEY` environment variable in your deployment platform.
+Make sure to set the `GEMINI_API_KEY` environment variable in your deployment platform.
+
+### Cost Breakdown
+
+- **Hosting**: FREE (Vercel/Netlify free tier)
+- **AI API**: FREE (Google Gemini free tier)
+- **Total Cost**: $0.00/month 🎉
 
 ## License
 

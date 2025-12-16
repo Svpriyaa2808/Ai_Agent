@@ -11,7 +11,7 @@ export default function AgentChat() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Hello! I'm an autonomous AI agent. I can help you with calculations, information searches, task planning, and more. What would you like to know or do?",
+      content: "Hello! I'm an autonomous AI agent powered by Google's Gemini (FREE tier - no payment required!). I can help you with calculations, information searches, task planning, and more. What would you like to know or do?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -36,7 +36,7 @@ export default function AgentChat() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/agent", {
+      const response = await fetch("/api/gemini-agent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -92,11 +92,16 @@ export default function AgentChat() {
     <div className="flex flex-col h-screen max-w-4xl mx-auto bg-white dark:bg-zinc-900">
       {/* Header */}
       <div className="px-6 py-4 border-b border-zinc-200 dark:border-zinc-800">
-        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">
-          AI Agent
-        </h1>
+        <div className="flex items-center gap-3">
+          <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">
+            AI Agent
+          </h1>
+          <span className="px-3 py-1 text-xs font-semibold bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 rounded-full">
+            FREE - Powered by Gemini
+          </span>
+        </div>
         <p className="text-sm text-zinc-600 dark:text-zinc-400">
-          Autonomous assistant with tool-calling capabilities
+          Autonomous assistant with tool-calling capabilities - No payment required!
         </p>
       </div>
 
